@@ -7,17 +7,18 @@ def validarnum(x):
         print("Solo se permiten números, intente de nuevo")
 
 def validaren(x):
-    while True:
-      try:
-        a= input(x)
-        if a.isalnum() == True:
-          return a
-        else:
-          print("Solo se permiten carácteres alfanuméricos, intente de nuevo")
-          break
-      except:
+  while True:
+    try:
+      a= input(x)
+      #print(any(char.isdigit() for char in a))
+      if any(char.isdigit() for char in a) == False:
+        return a
+      else:
         print("Solo se permiten carácteres alfanuméricos, intente de nuevo")
-        break
+        continue
+    except:
+      print("Solo se permiten carácteres alfanuméricos, intente de nuevo")
+      continue
 
 class Paciente:
     def __init__(self):
@@ -76,8 +77,8 @@ def main():
             print("A continuación se solicitan los datos: ")
             nombre= validaren("Ingrese nombre: ")
             ce= validarnum('ingrese cedula: ')
-            ge= validaren(input('Ingrese género: '))
-            se= validaren(input("Ingrese el servicio: "))
+            ge= validaren(('Ingrese género: '))
+            se= validaren(("Ingrese el servicio: "))
             pac= Paciente()
             pac.asignarCedula(ce)
             pac.asignarGenero(ge)
@@ -92,7 +93,7 @@ def main():
         elif op ==2:
             cedula = int(input("Ingrese la cedula a buscar: "))
             p= sis.verDatospacientes(cedula)
-            print(sis)
+            #print(sis)
             print("Nombre: " + p.verNombre())
             print("Cedula: " + str(p.verCedula()))
             print("Genero: " + p.verGenero())
@@ -105,5 +106,5 @@ def main():
             continue
         elif op== 4:
             break
-print("Hola Mundo")
+
 main()
